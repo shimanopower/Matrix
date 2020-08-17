@@ -58,7 +58,7 @@ class Matrix<T> {
         
         for x in 0...zeroIndexedSize {
             for y in 0...zeroIndexedSize {
-                let cycle = determineCyle(x: x, y: y)
+                let cycle = determineCycle(x: x, y: y)
                 if cycle == 1 {
                     matrix[x].append(food[foodIndex] as! T)
                     if foodIndex < food.count - 1 {
@@ -104,7 +104,7 @@ class Matrix<T> {
         }
     }
     
-    private func determineCyle(x: Int, y: Int) -> Int {
+    private func determineCycle(x: Int, y: Int) -> Int {
         var high = zeroIndexedSize
         while high > 0 {
             for low in 0..<cycles {
