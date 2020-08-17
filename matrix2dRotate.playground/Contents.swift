@@ -107,7 +107,7 @@ class Matrix<T> {
     private func determineCyle(x: Int, y: Int) -> Int {
         var high = zeroIndexedSize
         while high > 0 {
-            for low in 0...cycles {
+            for low in 0..<cycles {
                 if (x == low) || (y == low) || (x == high) || (y == high) {
                     return low + 1
                 } else {
@@ -137,6 +137,10 @@ let numbersMatrix = Matrix<Int>(size: 3)
 numbersMatrix.prettyPrint()
 numbersMatrix.rotate90Right()
 numbersMatrix.prettyPrint()
+let largeMatrix = Matrix<Any>(size: large)
+largeMatrix.prettyPrint()
+largeMatrix.rotate90Right()
+largeMatrix.prettyPrint()
 
 
 
