@@ -75,7 +75,7 @@ class Matrix<T> {
                         sportsIndex += 1
                     }
                 } else {
-                    matrix[x][y] = food.randomElement() as! T
+                    matrix[x].append(food.randomElement() as! T)
                 }
             }
         }
