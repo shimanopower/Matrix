@@ -7,11 +7,9 @@ class Matrix<T> {
     private var cycles: Int
     
     init(size: Int) {
-       self.size = size
-       zeroIndexedSize = size - 1
-       var half = Double(self.size / 2)
-       half.round(.towardZero)
-       cycles = Int(half)
+        self.size = size
+        zeroIndexedSize = size - 1
+        cycles = self.size / 2
    
         matrix = .init(repeating: .init(repeating: 0 as! T, count: size), count: size)
    
@@ -41,9 +39,7 @@ class Matrix<T> {
         let sports = Array(sportsString)
         
         zeroIndexedSize = self.size - 1
-        var half = Double(self.size / 2)
-        half.round(.towardZero)
-        cycles = Int(half)
+        cycles = self.size / 2
         
         matrix = [[T]]()
         
