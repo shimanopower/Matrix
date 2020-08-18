@@ -93,6 +93,7 @@ class Matrix<T> {
         print("rotating 90 degrees to the right")
     // iterates through the cycles.
         for cycle in 0..<cycles {
+            print("cycle is \(cycle)")
         // iterates through loops
             for loop in cycle..<zeroIndexedSize - cycle {
                 let temp = matrix[cycle][loop]
@@ -125,11 +126,7 @@ enum MatrixSize {
     case large
 }
 
-let large = MatrixSize.large
-let medium = MatrixSize.medium
-let small = MatrixSize.small
-
-let matrix = Matrix<Any>(size: small)
+let matrix = Matrix<Any>(size: .small)
 matrix.prettyPrint()
 matrix.rotate90Right()
 matrix.prettyPrint()
@@ -137,7 +134,7 @@ let numbersMatrix = Matrix<Int>(size: 3)
 numbersMatrix.prettyPrint()
 numbersMatrix.rotate90Right()
 numbersMatrix.prettyPrint()
-let largeMatrix = Matrix<Any>(size: large)
+let largeMatrix = Matrix<Any>(size: .large)
 largeMatrix.prettyPrint()
 largeMatrix.rotate90Right()
 largeMatrix.prettyPrint()
