@@ -31,16 +31,12 @@ class Matrix<T> {
             self.size = 6
         }
         
-        let food = Array("🍏🍎🍐🍊🍋🍌🍉🍇🍓🍈🍒🍑🍍🥥🥝🍅🍆🥑🥦🥬🥒🌶🌽🥕🧄🧅🥔🍠🥐🥯🥖🥨🥚🍳🧈🥞🧇🥓🥩")
-        let animals = Array("🐶🐱🐭🐹🐰🦊🐻🐼🐨🐯🦁🐮🐷🐸🐵🐔🦆🦅🦉🦇🐺🐗🐴🐝🐛🦋🐌🐞🐜🦟🦗")
-        let sports = Array("⚽️🏀🏈⚾️🥎🎾🏐🏉🥏🎱🪀🏓🏸🏒")
+        var food = Array("🍏🍎🍐🍊🍋🍌🍉🍇🍓🍈🍒🍑🍍🥥🥝🍅🍆🥑🥦🥬🥒🌶🌽🥕🧄🧅🥔🍠🥐🥯🥖🥨🥚🍳🧈🥞🧇🥓🥩")
+        var animals = Array("🐶🐱🐭🐹🐰🦊🐻🐼🐨🐯🦁🐮🐷🐸🐵🐔🦆🦅🦉🦇🐺🐗🐴🐝🐛🦋🐌🐞🐜🦟🦗")
+        var sports = Array("⚽️🏀🏈⚾️🥎🎾🏐🏉🥏🎱🪀🏓🏸🏒")
         
         zeroIndexedSize = self.size - 1
         cycles = self.size / 2
-        
-        var foodIndex = 0
-        var animalsIndex = 0
-        var sportsIndex = 0
         
         for x in 0...zeroIndexedSize {
             let emptyArray = [T]()
@@ -48,20 +44,11 @@ class Matrix<T> {
             for y in 0...zeroIndexedSize {
                 let cycle = determineCycle(x: x, y: y)
                 if cycle == 1 {
-                    matrix[x].append(food[foodIndex] as! T)
-                    if foodIndex < food.count - 1 {
-                        foodIndex += 1
-                    }
+                    matrix[x].append(food.popLast()! as! T)
                 } else if cycle == 2 {
-                    matrix[x].append(animals[animalsIndex] as! T)
-                    if animalsIndex < animals.count - 1 {
-                        animalsIndex += 1
-                    }
+                    matrix[x].append(animals.popLast()! as! T)
                 } else if cycle == 3 {
-                    matrix[x].append(sports[sportsIndex] as! T)
-                    if sportsIndex < sports.count - 1 {
-                        sportsIndex += 1
-                    }
+                    matrix[x].append(sports.popLast()! as! T)
                 } else {
                     matrix[x].append(food.randomElement() as! T)
                 }
