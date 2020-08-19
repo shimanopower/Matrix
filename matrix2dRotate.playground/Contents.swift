@@ -1,7 +1,7 @@
 import UIKit
 
 class Matrix<T> {
-    private var matrix: [[T]]
+    private var matrix = [[T]]()
     private var size: Int
     private var zeroIndexedSize: Int
     private var cycles: Int
@@ -11,11 +11,12 @@ class Matrix<T> {
         zeroIndexedSize = size - 1
         cycles = self.size / 2
    
-        matrix = .init(repeating: .init(repeating: 0 as! T, count: size), count: size)
-   
         for i in 0..<size {
+            let emptyArray = [T]()
+            matrix.append(emptyArray)
             for j in 0..<size {
-                matrix[i][j] = (i*size) + j + 1 as! T
+                let math = (i*size) + j + 1
+                matrix[i].append(math as! T)
             }
         }
     }
@@ -41,18 +42,13 @@ class Matrix<T> {
         zeroIndexedSize = self.size - 1
         cycles = self.size / 2
         
-        matrix = [[T]]()
-        
-        for _ in 0..<self.size {
-            let emptyArray = [T]()
-            matrix.append(emptyArray)
-        }
-        
         var foodIndex = 0
         var animalsIndex = 0
         var sportsIndex = 0
         
         for x in 0...zeroIndexedSize {
+            let emptyArray = [T]()
+            matrix.append(emptyArray)
             for y in 0...zeroIndexedSize {
                 let cycle = determineCycle(x: x, y: y)
                 if cycle == 1 {
