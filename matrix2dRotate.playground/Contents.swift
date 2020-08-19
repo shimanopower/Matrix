@@ -80,6 +80,18 @@ class Matrix<T> {
         }
     }
     
+    func alternativeRotate() {
+        var newMatrix = [[T]](repeating: [T](repeating: 0 as! T, count: size), count: size)
+        
+        for i in 0..<size {
+            for j in 0..<size {
+                newMatrix[j][size - i - 1] = matrix[i][j]
+            }
+        }
+        
+        matrix = newMatrix
+    }
+    
     private func determineCycle(x: Int, y: Int) -> Int {
         var high = zeroIndexedSize
         while high > 0 {
@@ -113,6 +125,12 @@ let largeMatrix = Matrix<Any>(size: .large)
 largeMatrix.prettyPrint()
 largeMatrix.rotate90Right()
 largeMatrix.prettyPrint()
+
+let numberMatrx = Matrix<Int>(size: 6)
+numberMatrx.prettyPrint()
+numberMatrx.alternativeRotate()
+numberMatrx.prettyPrint()
+
 
 
 
