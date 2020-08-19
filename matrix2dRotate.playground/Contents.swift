@@ -6,7 +6,7 @@ class Matrix<T> {
     private var zeroIndexedSize: Int
     private var cycles: Int
     
-    init(size: Int) {
+    init(size: Int) where T == Int {
         self.size = size
         zeroIndexedSize = size - 1
         cycles = self.size / 2
@@ -16,12 +16,12 @@ class Matrix<T> {
             matrix.append(emptyArray)
             for j in 0..<size {
                 let math = (i*size) + j + 1
-                matrix[i].append(math as! T)
+                matrix[i].append(math)
             }
         }
     }
     
-    init(size: MatrixSize) {
+    init(size: MatrixSize) where T == Character {
         switch size {
         case .small:
             self.size = 3
@@ -44,13 +44,13 @@ class Matrix<T> {
             for y in 0...zeroIndexedSize {
                 let cycle = determineCycle(x: x, y: y)
                 if cycle == 1 {
-                    matrix[x].append(food.popLast()! as! T)
+                    matrix[x].append(food.popLast()!)
                 } else if cycle == 2 {
-                    matrix[x].append(animals.popLast()! as! T)
+                    matrix[x].append(animals.popLast()!)
                 } else if cycle == 3 {
-                    matrix[x].append(sports.popLast()! as! T)
+                    matrix[x].append(sports.popLast()!)
                 } else {
-                    matrix[x].append(food.randomElement() as! T)
+                    matrix[x].append(food.randomElement()!)
                 }
             }
         }
@@ -80,18 +80,6 @@ class Matrix<T> {
         }
     }
     
-    func alternativeRotate() {
-        var newMatrix = [[T]](repeating: [T](repeating: 0 as! T, count: size), count: size)
-        
-        for i in 0..<size {
-            for j in 0..<size {
-                newMatrix[j][size - i - 1] = matrix[i][j]
-            }
-        }
-        
-        matrix = newMatrix
-    }
-    
     private func determineCycle(x: Int, y: Int) -> Int {
         var high = zeroIndexedSize
         while high > 0 {
@@ -105,6 +93,18 @@ class Matrix<T> {
         }
         return high
     }
+    
+    func alternativeRotate(_ placeholder: T) {
+        var newMatrix = [[T]](repeating: [T](repeating: placeholder, count: size), count: size)
+        
+        for i in 0..<size {
+            for j in 0..<size {
+                newMatrix[j][size - i - 1] = matrix[i][j]
+            }
+        }
+        
+        matrix = newMatrix
+    }
 }
 
 enum MatrixSize {
@@ -113,7 +113,7 @@ enum MatrixSize {
     case large
 }
 
-let matrix = Matrix<Any>(size: .small)
+let matrix = Matrix<Character>(size: .small)
 matrix.prettyPrint()
 matrix.rotate90Right()
 matrix.prettyPrint()
@@ -121,14 +121,14 @@ let numbersMatrix = Matrix<Int>(size: 3)
 numbersMatrix.prettyPrint()
 numbersMatrix.rotate90Right()
 numbersMatrix.prettyPrint()
-let largeMatrix = Matrix<Any>(size: .large)
+let largeMatrix = Matrix<Character>(size: .large)
 largeMatrix.prettyPrint()
 largeMatrix.rotate90Right()
 largeMatrix.prettyPrint()
 
 let numberMatrx = Matrix<Int>(size: 6)
 numberMatrx.prettyPrint()
-numberMatrx.alternativeRotate()
+numberMatrx.alternativeRotate(0)
 numberMatrx.prettyPrint()
 
 
